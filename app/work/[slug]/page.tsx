@@ -6,7 +6,8 @@ import { MdArrowBack, MdArrowForward, MdArrowOutward, MdCheck } from "react-icon
 import { SiGithub } from "react-icons/si";
 import { ArchitectureDiagram } from "@/components/site/architecture-diagram";
 import { StatusBadge } from "@/components/site/status-badge";
-import { caseStudies, categories, getCaseStudy, type CaseLink } from "@/lib/case-studies";
+import { caseStudies, categories, getCaseStudy, type CaseLink, type CaseStudy } from "@/lib/case-studies";
+import HashRingDemo from "@/components/site/hash-ring-demo";
 import { site } from "@/lib/site";
 
 type Params = { params: { slug: string } };
@@ -23,14 +24,18 @@ export function generateMetadata({ params }: Params): Metadata {
   return { title: study.title, description: study.tagline };
 }
 
-const sections = [
-  { id: "problem", label: "Problem" },
-  { id: "solution", label: "Solution" },
-  { id: "architecture", label: "Architecture" },
-  { id: "stack", label: "Stack" },
-  { id: "results", label: "Results" },
-  { id: "links", label: "Repos & demos" },
-];
+// Optional sections only appear (and get a number) when a study has them.
+const sectionsFor = (study: CaseStudy) =>
+  [
+    { id: "problem", label: "Problem" },
+    { id: "solution", label: "Solution" },
+    { id: "architecture", label: "Architecture" },
+    study.demo && { id: "demo", label: "Try it" },
+    study.decisions && { id: "decisions", label: "Decisions" },
+    { id: "stack", label: "Stack" },
+    { id: "results", label: "Results" },
+    { id: "links", label: "Repos & demos" },
+  ].filter((s): s is { id: string; label: string } => Boolean(s));
 
 const LinkIcon = ({ kind }: { kind: CaseLink["kind"] }) =>
   kind === "repo" ? <SiGithub aria-hidden="true" /> : <MdArrowOutward aria-hidden="true" />;
@@ -54,6 +59,8 @@ export default function CaseStudyPage({ params }: Params) {
   const index = caseStudies.indexOf(study);
   const next = caseStudies[(index + 1) % caseStudies.length];
   const category = categories.find((c) => c.key === study.category)?.label;
+  const sections = sectionsFor(study);
+  const n = (id: string) => sections.findIndex((s) => s.id === id) + 1;
 
   return (
     <article className="mx-auto max-w-6xl px-4 pb-8 pt-10 sm:px-8">
@@ -113,11 +120,11 @@ export default function CaseStudyPage({ params }: Params) {
         </nav>
 
         <div className="min-w-0">
-          <Block id="problem" n={1} title="Problem">
+          <Block id="problem" n={n("problem")} title="Problem">
             <p className="max-w-3xl text-base leading-relaxed text-snow/80">{study.problem}</p>
           </Block>
 
-          <Block id="solution" n={2} title="Solution">
+          <Block id="solution" n={n("solution")} title="Solution">
             <ul className="max-w-3xl space-y-3">
               {study.solution.map((s) => (
                 <li key={s} className="flex gap-3 text-base leading-relaxed text-snow/80">
@@ -128,14 +135,42 @@ export default function CaseStudyPage({ params }: Params) {
             </ul>
           </Block>
 
-          <Block id="architecture" n={3} title="Architecture">
+          <Block id="architecture" n={n("architecture")} title="Architecture">
             <ArchitectureDiagram stages={study.architecture} />
             {study.architectureNote && (
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-mist">{study.architectureNote}</p>
             )}
           </Block>
 
-          <Block id="stack" n={4} title="Stack">
+          {study.demo === "hash-ring" && (
+            <Block id="demo" n={n("demo")} title="Try the routing">
+              <p className="mb-6 max-w-3xl text-base leading-relaxed text-snow/80">
+                The core idea in miniature: workloads and executors share one
+                hash ring, so resizing the pool only moves the workloads next
+                to the executor that changed.
+              </p>
+              <HashRingDemo />
+            </Block>
+          )}
+
+          {study.decisions && (
+            <Block id="decisions" n={n("decisions")} title="Design decisions">
+              <ol className="grid gap-4 md:grid-cols-3">
+                {study.decisions.map((d, i) => (
+                  <li key={d.title} className="surface flex flex-col rounded-xl p-6">
+                    <p className="text-sm font-light text-lilac/70">{String(i + 1).padStart(2, "0")}</p>
+                    <h3 className="mt-2 text-lg font-normal leading-snug text-snow">{d.title}</h3>
+                    <p className="micro mt-3 text-mist/70">Over</p>
+                    <p className="mt-1 text-sm text-mist">{d.over}</p>
+                    <p className="micro mt-4 text-mist/70">Why</p>
+                    <p className="mt-1 text-sm leading-relaxed text-snow/80">{d.why}</p>
+                  </li>
+                ))}
+              </ol>
+            </Block>
+          )}
+
+          <Block id="stack" n={n("stack")} title="Stack">
             <ul className="flex flex-wrap gap-2">
               {study.stack.map((tech) => (
                 <li
@@ -148,7 +183,7 @@ export default function CaseStudyPage({ params }: Params) {
             </ul>
           </Block>
 
-          <Block id="results" n={5} title="Results">
+          <Block id="results" n={n("results")} title="Results">
             <ul className="max-w-3xl space-y-3">
               {study.results.map((r) => (
                 <li key={r} className="flex gap-3 text-base leading-relaxed text-snow/80">
@@ -161,7 +196,7 @@ export default function CaseStudyPage({ params }: Params) {
             </ul>
           </Block>
 
-          <Block id="links" n={6} title="Repos & demos">
+          <Block id="links" n={n("links")} title="Repos & demos">
             {study.links.length > 0 ? (
               <ul className="flex flex-wrap gap-3">
                 {study.links.map((l) => (

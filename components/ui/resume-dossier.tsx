@@ -288,7 +288,7 @@ export default function ResumeDossier({
       className="fixed inset-0 z-[10001] flex items-center justify-center p-2 sm:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label={`${profile.name} résumé`}
+      aria-label={`${profile.name} resume`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -316,7 +316,7 @@ export default function ResumeDossier({
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lilac/70">
-                Résumé
+                Resume
               </p>
               <h2 className="truncate bg-gradient-to-r from-white via-lilac to-lilac bg-clip-text text-2xl font-bold text-transparent sm:text-3xl">
                 {profile.name}
@@ -327,7 +327,7 @@ export default function ResumeDossier({
               ref={closeRef}
               type="button"
               onClick={onClose}
-              aria-label="Close résumé"
+              aria-label="Close resume"
               className="shrink-0 rounded-full border border-white/15 p-2 text-white/80 transition-colors hover:border-lilac/50 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lilac"
             >
               <MdClose className="text-lg" aria-hidden="true" />
@@ -360,7 +360,7 @@ export default function ResumeDossier({
           {/* Section tabs: one scrollable row, never wraps into extra height */}
           <div
             role="tablist"
-            aria-label="Résumé sections"
+            aria-label="Resume sections"
             className="-mx-1 mt-4 flex gap-1 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {resumeSections.map(({ key, label }) => {

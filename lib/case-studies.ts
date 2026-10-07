@@ -49,6 +49,10 @@ export type CaseStudy = {
   stack: string[];
   results: string[];
   metrics?: { value: string; label: string }[];
+  /** Key design decisions: what was chosen, over what, and why. */
+  decisions?: { title: string; over: string; why: string }[];
+  /** An interactive explainer rendered after the architecture. */
+  demo?: "hash-ring";
   links: CaseLink[];
 };
 
@@ -93,6 +97,24 @@ export const caseStudies: CaseStudy[] = [
       "Deterministic placement: a given workload always routes to the same executor, so caches and state stay warm.",
       "Graceful scaling: changing the executor pool remaps only the affected keys instead of the whole fleet.",
       "Clear control/data plane split, so a misbehaving config push doesn't take down in-flight deployments.",
+    ],
+    demo: "hash-ring",
+    decisions: [
+      {
+        title: "Consistent-hash routing",
+        over: "Pinning to one node, or round-robin / modulo placement",
+        why: "Pinning creates a single point of failure; modulo placement reshuffles almost every workload whenever the pool changes. A hash ring keyed on the workload keeps placement deterministic and only remaps the keys next to the node that changed.",
+      },
+      {
+        title: "Separate control and data planes",
+        over: "One service that both configures and executes",
+        why: "Routing and execution keep running while configuration changes, so a bad config push can't take down deployments that are already in flight.",
+      },
+      {
+        title: "gRPC between router and executors",
+        over: "JSON over REST",
+        why: "Typed contracts between services and low-overhead calls on the hot path from router to executor.",
+      },
     ],
     links: [],
   },

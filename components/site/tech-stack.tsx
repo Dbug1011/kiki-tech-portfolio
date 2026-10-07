@@ -7,6 +7,46 @@ import { SectionHeading } from "./section-heading";
  * first and lit (violet dot + build count); the rest are known tools that
  * haven't been written up yet. Icons stay monochrome per the design system.
  */
+const allTools = stackGroups.flatMap((g) => g.tools);
+const half = Math.ceil(allTools.length / 2);
+const beltA = allTools.slice(0, half);
+const beltB = allTools.slice(half);
+
+function Belt({ tools, reverse = false }: { tools: Tool[]; reverse?: boolean }) {
+  return (
+    <div className="marquee-group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+      {/* Two identical copies with trailing padding, so -50% loops seamlessly. */}
+      <div className={reverse ? "marquee-track flex w-max animate-marquee-reverse" : "marquee-track flex w-max animate-marquee"}>
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0 gap-3 pr-3">
+            {tools.map((tool) => {
+              const lit = buildsUsing(tool).length > 0;
+              const { Icon } = tool;
+              return (
+                <span
+                  key={tool.name}
+                  className={
+                    lit
+                      ? "inline-flex items-center gap-2 rounded-full border border-volt/40 bg-volt/[0.1] px-4 py-2 text-sm text-snow shadow-[0_0_24px_-12px_rgba(121,69,255,0.9)]"
+                      : "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-mist"
+                  }
+                >
+                  {Icon ? (
+                    <Icon className={lit ? "text-base text-lilac" : "text-base text-mist/70"} />
+                  ) : (
+                    <span className={lit ? "h-1.5 w-1.5 rounded-full bg-lilac" : "h-1.5 w-1.5 rounded-full bg-mist/50"} />
+                  )}
+                  {tool.name}
+                </span>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function TechStack() {
   const used = new Set(caseStudies.flatMap((c) => c.stack)).size;
 
@@ -22,6 +62,14 @@ export default function TechStack() {
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-volt shadow-[0_0_8px_#7945FF]" />
             Used in a case study ({used} stack items across {caseStudies.length} builds)
           </p>
+        </div>
+
+        {/* Moving belts: the whole stack drifting in opposite directions.
+            Decorative (the grid below is the accessible list); pauses on
+            hover and stops for reduced-motion visitors. */}
+        <div aria-hidden="true" className="relative left-1/2 mt-12 w-screen -translate-x-1/2 space-y-3">
+          <Belt tools={beltA} />
+          <Belt tools={beltB} reverse />
         </div>
 
         <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

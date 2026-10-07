@@ -47,7 +47,7 @@ const SiteNav = () => {
             onClick={() => openDocument(RESUME_PDF)}
             className="btn-primary px-4 py-2"
           >
-            Résumé
+            Resume
           </button>
         </div>
       </div>

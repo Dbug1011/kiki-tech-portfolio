@@ -8,8 +8,8 @@ import {
 import type { ResumeSection } from "@/lib/resume-data";
 
 /**
- * Opens the PDF résumé, or the in-page dossier at `section` when one is
- * given. Lets server-rendered pages place a résumé trigger anywhere.
+ * Opens the PDF resume, or the in-page dossier at `section` when one is
+ * given. Lets server-rendered pages place a resume trigger anywhere.
  */
 export default function ResumeButton({
   section,

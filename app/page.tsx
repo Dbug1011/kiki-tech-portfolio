@@ -141,7 +141,7 @@ export default function Home() {
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                 <SiGithub aria-hidden="true" /> GitHub
               </a>
-              <ResumeButton className="btn-ghost">Résumé</ResumeButton>
+              <ResumeButton className="btn-ghost">Resume</ResumeButton>
             </div>
           </div>
         </div>

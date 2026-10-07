@@ -38,7 +38,7 @@ import {
 import { caseStudies } from "./case-studies";
 
 // The full toolset, grouped by where it sits in a system. Only tools that
-// appear in the résumé or a case study are listed. `uses` holds the names a
+// appear in the resume or a case study are listed. `uses` holds the names a
 // tool goes by in case-study `stack` arrays, so the page can show how many
 // builds actually used it.
 

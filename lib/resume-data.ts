@@ -1,5 +1,5 @@
-// Single source for the in-page résumé dossier. Merges the March 2025 PDF
-// résumé with the newer role/project/certificate details shown on the site.
+// Single source for the in-page resume dossier. Merges the March 2025 PDF
+// resume with the newer role/project/certificate details shown on the site.
 //
 // Deliberately NOT included (they were in the PDF): home address, birth date,
 // phone number, and the references' personal phone/email. A public web page
@@ -146,7 +146,7 @@ export const projects: { name: string; tags: string[]; blurb: string }[] = [
   },
 ];
 
-// 1–5, as rated on the PDF résumé.
+// 1–5, as rated on the PDF resume.
 export const softSkills: { name: string; level: number }[] = [
   { name: "Public Speaking", level: 5 },
   { name: "People Management & Communication", level: 5 },

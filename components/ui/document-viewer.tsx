@@ -15,7 +15,7 @@ import { MdClose, MdDownload, MdOpenInNew } from "react-icons/md";
 import { useMounted } from "@/app/hooks/use-mounted";
 import dynamic from "next/dynamic";
 
-// The dossier (and all its résumé data) stays out of the initial bundle and
+// The dossier (and all its resume data) stays out of the initial bundle and
 // loads on first open. `preloadDossier` lets a trigger warm it on hover.
 const loadDossier = () => import("@/components/ui/resume-dossier");
 const ResumeDossier = dynamic(loadDossier, { ssr: false });
@@ -40,7 +40,7 @@ const DocumentViewerContext = createContext<
   DocumentViewerContextType | undefined
 >(undefined);
 
-/** The downloadable PDF résumé, shown by the navbar's Resume button. */
+/** The downloadable PDF resume, shown by the navbar's Resume button. */
 export const RESUME_PDF: ViewerDoc = {
   src: "/pdf/Karis-Ruth-Jumawan-Resume.pdf",
   title: "Resume",
@@ -50,7 +50,7 @@ export const isPdf = (href: string) => /\.pdf($|[?#])/i.test(href);
 export const isVideo = (href: string) => /\.(mp4|webm)($|[?#])/i.test(href);
 
 /**
- * Hosts every in-page reader for the app: the native résumé dossier, the PDF
+ * Hosts every in-page reader for the app: the native resume dossier, the PDF
  * previewer, and a video player. Components call `openDossier()` /
  * `openDocument()` instead of linking straight to raw files, so visitors
  * never get bounced to a bare file tab or a surprise download.
@@ -74,7 +74,7 @@ export const DocumentViewerProvider = ({
   );
   const closeDocument = useCallback(() => setActive(null), []);
 
-  // Shareable deep link: /#resume opens the PDF résumé on load.
+  // Shareable deep link: /#resume opens the PDF resume on load.
   useEffect(() => {
     if (window.location.hash === "#resume") openDocument(RESUME_PDF);
   }, [openDocument]);
