@@ -115,12 +115,13 @@ export default function Home() {
             />
             <div className="relative aspect-[3/4] [mask-image:linear-gradient(to_bottom,black_62%,transparent_97%)]">
               <Image
-                src="/photos/portrait-headshot.webp"
+                src="/photos/portrait-headshot-hd.webp"
                 alt="Portrait of Karis Ruth Jumawan"
                 fill
                 priority
+                quality={92}
                 sizes="(min-width: 640px) 520px, 100vw"
-                className="object-contain object-bottom [filter:drop-shadow(0_0_40px_rgba(121,69,255,0.35))]"
+                className="object-contain object-bottom"
               />
             </div>
           </div>
