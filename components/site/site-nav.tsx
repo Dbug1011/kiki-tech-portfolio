@@ -9,29 +9,23 @@ const SiteNav = () => {
   const { openDocument } = useDocumentViewer();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#050a14]/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-white/[0.05] bg-ink/70 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 font-mono text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
+          className="focus-ring rounded font-display text-sm uppercase tracking-[0.35em] text-snow"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-md border border-cyan-400/30 bg-cyan-400/10 text-cyan-300">
-            k
-          </span>
-          <span className="hidden sm:inline">
-            {site.handle}
-            <span className="text-cyan-300">/</span>
-            <span className="text-white/60">systems</span>
-          </span>
+          Kiki
         </Link>
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1 text-sm text-white/65">
+        {/* Pill navigation: translucent dark surface with a fine outline. */}
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.03] p-1">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="rounded-full px-3 py-1.5 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                  className="micro focus-ring block rounded-full px-3.5 py-1.5 text-mist transition-colors hover:bg-white/[0.06] hover:text-snow"
                 >
                   {item.label}
                 </Link>
@@ -43,16 +37,15 @@ const SiteNav = () => {
         <div className="flex items-center gap-2">
           <a
             href={site.creativeUrl}
-            className="hidden items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-white/60 transition-colors hover:text-white sm:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="micro focus-ring hidden items-center gap-1 rounded-full px-3 py-1.5 text-mist transition-colors hover:text-snow sm:inline-flex"
           >
-            Creative work
-            <MdArrowOutward aria-hidden="true" />
+            Creative <MdArrowOutward aria-hidden="true" />
           </a>
           <button
             type="button"
             aria-haspopup="dialog"
             onClick={() => openDocument(RESUME_PDF)}
-            className="rounded-full border border-cyan-300/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-semibold text-cyan-100 transition-colors hover:bg-cyan-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="btn-primary px-4 py-2"
           >
             Résumé
           </button>

@@ -37,9 +37,9 @@ const LinkIcon = ({ kind }: { kind: CaseLink["kind"] }) =>
 
 function Block({ id, n, title, children }: { id: string; n: number; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className="scroll-mt-24 border-t border-white/[0.07] py-10">
-      <p className="font-mono text-xs text-cyan-300/70">{String(n).padStart(2, "0")}</p>
-      <h2 id={`${id}-h`} className="mt-1 text-2xl font-semibold tracking-tight text-white">
+    <section id={id} aria-labelledby={`${id}-h`} className="scroll-mt-24 border-t border-white/[0.07] py-12">
+      <p aria-hidden="true" className="text-5xl font-light leading-none text-lilac/25">{String(n).padStart(2, "0")}</p>
+      <h2 id={`${id}-h`} className="mt-3 text-2xl font-light tracking-tight text-snow md:text-3xl">
         {title}
       </h2>
       <div className="mt-5">{children}</div>
@@ -56,10 +56,10 @@ export default function CaseStudyPage({ params }: Params) {
   const category = categories.find((c) => c.key === study.category)?.label;
 
   return (
-    <article className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6">
+    <article className="mx-auto max-w-6xl px-4 pb-8 pt-10 sm:px-8">
       <Link
         href="/#work"
-        className="inline-flex items-center gap-1.5 rounded text-sm text-white/55 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+        className="micro focus-ring inline-flex items-center gap-1.5 rounded text-mist transition-colors hover:text-snow"
       >
         <MdArrowBack aria-hidden="true" /> All case studies
       </Link>
@@ -67,33 +67,33 @@ export default function CaseStudyPage({ params }: Params) {
       {/* Header */}
       <header className="mt-8 max-w-3xl">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-xs text-white/45">
+          <span className="micro text-mist">
             {category} · {study.year}
           </span>
           <StatusBadge status={study.status} />
         </div>
-        <h1 className="text-legible mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+        <h1 className="mt-5 text-4xl font-light leading-[1.1] tracking-tight text-snow md:text-6xl">
           {study.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-white/70">{study.tagline}</p>
-        <p className="mt-4 font-mono text-xs text-white/50">
-          Role: <span className="text-white/80">{study.role}</span>
+        <p className="mt-5 text-lg leading-relaxed text-mist md:text-xl">{study.tagline}</p>
+        <p className="micro mt-5 text-mist/80">
+          Role · <span className="text-snow/90">{study.role}</span>
         </p>
       </header>
 
       {study.metrics && (
         <dl className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
           {study.metrics.map((m) => (
-            <div key={m.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <dt className="text-xs text-white/50">{m.label}</dt>
-              <dd className="mt-1 text-2xl font-semibold text-cyan-200">{m.value}</dd>
+            <div key={m.label} className="surface rounded-xl p-4">
+              <dt className="micro text-mist">{m.label}</dt>
+              <dd className="mt-1 text-3xl font-light text-lilac">{m.value}</dd>
             </div>
           ))}
         </dl>
       )}
 
       {study.cover && (
-        <div className="relative mt-10 aspect-[16/8] overflow-hidden rounded-3xl border border-white/10">
+        <div className="relative mt-10 aspect-[16/8] overflow-hidden rounded-xl border border-white/10">
           <Image src={study.cover} alt={`${study.title} cover`} fill className="object-cover" sizes="(min-width: 1152px) 1152px, 100vw" />
         </div>
       )}
@@ -101,11 +101,11 @@ export default function CaseStudyPage({ params }: Params) {
       <div className="mt-10 grid gap-10 lg:grid-cols-[180px_1fr]">
         {/* Section index */}
         <nav aria-label="Sections" className="hidden lg:block">
-          <ol className="sticky top-24 space-y-2 font-mono text-xs">
+          <ol className="sticky top-24 space-y-2.5 text-[11px] uppercase tracking-[0.16em]">
             {sections.map((s, i) => (
               <li key={s.id}>
-                <a href={`#${s.id}`} className="text-white/45 transition-colors hover:text-cyan-200">
-                  <span className="text-cyan-300/60">{String(i + 1).padStart(2, "0")}</span> {s.label}
+                <a href={`#${s.id}`} className="text-mist/70 transition-colors hover:text-snow">
+                  <span className="text-lilac/50">{String(i + 1).padStart(2, "0")}</span> {s.label}
                 </a>
               </li>
             ))}
@@ -114,14 +114,14 @@ export default function CaseStudyPage({ params }: Params) {
 
         <div className="min-w-0">
           <Block id="problem" n={1} title="Problem">
-            <p className="max-w-3xl text-base leading-relaxed text-white/75">{study.problem}</p>
+            <p className="max-w-3xl text-base leading-relaxed text-snow/80">{study.problem}</p>
           </Block>
 
           <Block id="solution" n={2} title="Solution">
             <ul className="max-w-3xl space-y-3">
               {study.solution.map((s) => (
-                <li key={s} className="flex gap-3 text-base leading-relaxed text-white/75">
-                  <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
+                <li key={s} className="flex gap-3 text-base leading-relaxed text-snow/80">
+                  <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-volt shadow-[0_0_8px_#7945FF]" />
                   {s}
                 </li>
               ))}
@@ -131,7 +131,7 @@ export default function CaseStudyPage({ params }: Params) {
           <Block id="architecture" n={3} title="Architecture">
             <ArchitectureDiagram stages={study.architecture} />
             {study.architectureNote && (
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/60">{study.architectureNote}</p>
+              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-mist">{study.architectureNote}</p>
             )}
           </Block>
 
@@ -140,7 +140,7 @@ export default function CaseStudyPage({ params }: Params) {
               {study.stack.map((tech) => (
                 <li
                   key={tech}
-                  className="rounded-xl border border-cyan-300/20 bg-cyan-400/[0.07] px-3 py-1.5 font-mono text-xs text-cyan-100"
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-snow/85"
                 >
                   {tech}
                 </li>
@@ -151,8 +151,10 @@ export default function CaseStudyPage({ params }: Params) {
           <Block id="results" n={5} title="Results">
             <ul className="max-w-3xl space-y-3">
               {study.results.map((r) => (
-                <li key={r} className="flex gap-3 text-base leading-relaxed text-white/75">
-                  <MdCheck aria-hidden="true" className="mt-1 shrink-0 text-emerald-300" />
+                <li key={r} className="flex gap-3 text-base leading-relaxed text-snow/80">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-lilac/15 text-[11px] text-lilac">
+                    <MdCheck aria-hidden="true" />
+                  </span>
                   {r}
                 </li>
               ))}
@@ -168,7 +170,7 @@ export default function CaseStudyPage({ params }: Params) {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-sm text-white/85 transition-colors hover:border-cyan-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                      className="btn-ghost"
                     >
                       <LinkIcon kind={l.kind} /> {l.label}
                     </a>
@@ -176,9 +178,9 @@ export default function CaseStudyPage({ params }: Params) {
                 ))}
               </ul>
             ) : (
-              <p className="max-w-3xl text-sm leading-relaxed text-white/60">
+              <p className="max-w-3xl text-sm leading-relaxed text-mist">
                 The code for this one isn&apos;t public. Happy to walk through it,{" "}
-                <a href={`mailto:${site.email}`} className="text-cyan-300 underline-offset-4 hover:underline">
+                <a href={`mailto:${site.email}`} className="text-lilac underline-offset-4 hover:underline">
                   just ask
                 </a>
                 .
@@ -192,14 +194,14 @@ export default function CaseStudyPage({ params }: Params) {
       <Link
         href={`/work/${next.slug}`}
         data-cursor="magnet"
-        className="group mt-10 flex items-center justify-between gap-6 rounded-3xl border border-white/10 bg-white/[0.035] p-6 transition-colors hover:border-cyan-300/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 md:p-8"
+        className="surface focus-ring group mt-12 flex items-center justify-between gap-6 rounded-xl p-6 transition-[border-color,box-shadow] hover:border-volt/50 hover:shadow-[0_0_60px_-25px_rgba(121,69,255,0.9)] md:p-8"
       >
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">Next case study</p>
-          <p className="mt-2 text-2xl font-semibold text-white">{next.title}</p>
-          <p className="mt-1 text-sm text-white/60">{next.tagline}</p>
+          <p className="micro text-lilac">Next case study</p>
+          <p className="mt-2 text-2xl font-light text-snow">{next.title}</p>
+          <p className="mt-1 text-sm text-mist">{next.tagline}</p>
         </div>
-        <MdArrowForward aria-hidden="true" className="shrink-0 text-2xl text-cyan-300 transition-transform group-hover:translate-x-1" />
+        <MdArrowForward aria-hidden="true" className="shrink-0 text-2xl text-lilac transition-transform group-hover:translate-x-1" />
       </Link>
     </article>
   );

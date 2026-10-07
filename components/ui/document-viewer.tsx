@@ -181,7 +181,7 @@ const FileViewerModal = ({
   const viewerSrc = `${src}#toolbar=1&navpanes=0&view=FitH`;
 
   const actionClass =
-    "h-9 px-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 text-white/85 text-xs font-medium hover:border-cyan-400/50 hover:text-white hover:bg-white/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400";
+    "h-9 px-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 text-white/85 text-xs font-medium hover:border-lilac/50 hover:text-white hover:bg-white/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lilac";
 
   return (
     <motion.div
@@ -202,7 +202,7 @@ const FileViewerModal = ({
 
       <motion.div
         className={
-          "relative w-full flex flex-col rounded-2xl overflow-hidden border border-white/15 bg-slate-950/85 backdrop-blur-md md:bg-slate-950/70 md:backdrop-blur-xl shadow-[0_0_80px_-20px_rgba(34,211,238,0.55)] " +
+          "relative w-full flex flex-col rounded-2xl overflow-hidden border border-white/15 bg-ink/90 backdrop-blur-md md:bg-ink/75 md:backdrop-blur-xl shadow-[0_0_80px_-20px_rgba(121,69,255,0.5)] " +
           (video ? "max-w-5xl" : "max-w-5xl h-[92dvh]")
         }
         initial={prefersReducedMotion ? false : { y: 24, scale: 0.98 }}

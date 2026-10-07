@@ -28,6 +28,18 @@ const config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         dark: '#1D1D1F',
+        // Design system (tech-design.md). Dark neutrals dominate; violet is
+        // reserved for focal points; the blues only appear in the spotlight.
+        ink: { DEFAULT: "#0B0D0F", 2: "#13171A" },
+        graphite: "#17191A",
+        snow: "#EFEDF7",
+        mist: "#A5A5AD",
+        volt: "#7945FF",
+        lilac: "#CEC6EE",
+        night: "#151641",
+        ice: "#E4EBFE",
+        peri: "#B0C6F4",
+        dusk: "#919FC5",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -112,6 +124,7 @@ const config = {
     },
     fontFamily: {
       sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       mono: ["var(--font-mono)", "ui-monospace", "monospace"],
     },
   },

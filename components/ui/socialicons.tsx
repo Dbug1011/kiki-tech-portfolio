@@ -55,7 +55,7 @@ const SocialIcons = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="hover:scale-150 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-sm"
+          className="hover:scale-150 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lilac focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-sm"
         >
           <Icon aria-hidden="true" />
         </a>

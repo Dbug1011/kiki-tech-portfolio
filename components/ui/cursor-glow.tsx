@@ -93,8 +93,8 @@ export default function CursorGlow() {
         translateY: "-50%",
         opacity: visible ? 1 : 0,
         background:
-          "radial-gradient(circle, rgba(59,130,246,0.45) 0%, rgba(34,211,238,0.28) 45%, transparent 70%)",
-        boxShadow: "0 0 24px 6px rgba(34,211,238,0.25)",
+          "radial-gradient(circle, rgba(121,69,255,0.45) 0%, rgba(206,198,238,0.22) 45%, transparent 70%)",
+        boxShadow: "0 0 24px 6px rgba(121,69,255,0.3)",
         transition: "opacity 200ms ease",
       }}
     />
