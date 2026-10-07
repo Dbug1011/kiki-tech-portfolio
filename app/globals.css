@@ -92,6 +92,12 @@
   .btn-ghost {
     @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-snow/85 backdrop-blur-md transition-colors hover:border-lilac/40 hover:text-snow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt;
   }
+  /* Michroma ships in one weight; a stroke in the text colour brings it up
+     to Riosark's heavier strokes. Scales with font size. */
+  .display-weight {
+    -webkit-text-stroke: 0.022em currentColor;
+    paint-order: stroke fill;
+  }
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt;
   }

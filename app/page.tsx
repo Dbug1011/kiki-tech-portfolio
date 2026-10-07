@@ -93,7 +93,7 @@ export default function Home() {
             <span className="hidden sm:inline">{site.location}</span>
           </div>
 
-          <p className="mt-10 text-center font-display text-sm lowercase tracking-[0.5em] text-lilac md:text-base">
+          <p className="mt-10 text-center font-display text-xs lowercase tracking-[0.45em] text-lilac md:text-sm">
             Karis Ruth
           </p>
 
@@ -103,7 +103,7 @@ export default function Home() {
               <span className="sr-only">Karis Ruth Jumawan</span>
               <span
                 aria-hidden="true"
-                className="whitespace-nowrap bg-gradient-to-b from-snow via-snow to-lilac/60 bg-clip-text font-display text-[15vw] font-normal lowercase leading-none tracking-[0.01em] text-transparent sm:text-[8.5rem] lg:text-[10.5rem]"
+                className="display-weight whitespace-nowrap font-display text-[13vw] font-normal lowercase leading-none tracking-[-0.02em] text-snow [text-shadow:0_0_60px_rgba(121,69,255,0.35)] sm:text-[7.5rem] lg:text-[9.5rem]"
               >
                 jumawan
               </span>
@@ -126,7 +126,7 @@ export default function Home() {
           </div>
 
           <div className="relative -mt-24 flex flex-col items-center pb-20 text-center">
-            <p className="max-w-xl text-lg leading-relaxed text-snow/85 md:text-xl">
+            <p className="max-w-2xl text-lg font-light leading-relaxed text-snow/85 md:text-xl">
               Computer engineer building backend, cloud, and hardware systems
               that hold up, and writing up how each one works.
             </p>

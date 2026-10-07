@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk, Unbounded } from "next/font/google";
+import { JetBrains_Mono, Michroma, Sora } from "next/font/google";
 import "./globals.css";
 import { DocumentViewerProvider } from "@/components/ui/document-viewer";
 import CursorGlow from "@/components/ui/cursor-glow";
@@ -7,25 +7,28 @@ import AmbientBackground from "@/components/ui/ambient-background";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 
-// Light geometric sans for everything; a rounded, wide display face for the
-// wordmark only; mono stays for code-ish details inside diagrams.
-const sans = Space_Grotesk({
+// Sora: clean, slightly wide geometric sans for everything readable. It
+// shares Michroma's geometry without competing with it.
+const sans = Sora({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   variable: "--font-sans",
   display: "swap",
 });
 // Display face for the wordmark and hero name. The intended font is Riosark
-// (Nazmulsdesign, commercial). Unbounded is the closest free match. With a
-// licensed file, drop it in app/fonts/ and swap this for:
+// (Nazmulsdesign, commercial). Michroma is the closest free match (wide,
+// squircle "o/a/s"); `.display-weight` in globals.css thickens it toward
+// Riosark's weight. With a licensed file, drop it in app/fonts/ and swap to:
 //   import localFont from "next/font/local";
 //   const display = localFont({ src: "./fonts/Riosark.woff2", variable: "--font-display", display: "swap" });
-const display = Unbounded({
+// and remove `.display-weight` from the hero name.
+const display = Michroma({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "400",
   variable: "--font-display",
   display: "swap",
 });
+// Mono stays for code-ish details.
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
