@@ -93,35 +93,39 @@ export default function Home() {
             <span className="hidden sm:inline">{site.location}</span>
           </div>
 
-          <p className="mt-10 text-center font-display text-sm uppercase tracking-[0.6em] text-lilac md:text-base">
+          <p className="mt-10 text-center font-display text-sm lowercase tracking-[0.5em] text-lilac md:text-base">
             Karis Ruth
           </p>
 
-          {/* Display name overlapping the portrait */}
-          <div className="relative mx-auto mt-4 w-full max-w-[420px]">
-            <h1 className="pointer-events-none absolute inset-x-0 top-[6%] z-10 flex justify-center">
+          {/* Cutout portrait in front of the display name, lit from behind. */}
+          <div className="relative mx-auto mt-2 w-full max-w-[520px]">
+            <h1 className="pointer-events-none absolute inset-x-0 top-[9%] flex justify-center">
               <span className="sr-only">Karis Ruth Jumawan</span>
               <span
                 aria-hidden="true"
-                className="whitespace-nowrap bg-gradient-to-b from-snow via-snow to-lilac/70 bg-clip-text font-display text-[13vw] uppercase leading-none tracking-[0.06em] text-transparent [filter:drop-shadow(0_6px_30px_rgba(11,13,15,0.7))] sm:text-[7.5rem] lg:text-[9rem]"
+                className="whitespace-nowrap bg-gradient-to-b from-snow via-snow to-lilac/60 bg-clip-text font-display text-[15vw] font-normal lowercase leading-none tracking-[0.01em] text-transparent sm:text-[8.5rem] lg:text-[10.5rem]"
               >
-                Jumawan
+                jumawan
               </span>
             </h1>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] [mask-image:linear-gradient(to_bottom,black_55%,transparent_98%)]">
+            {/* Rim light */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-[12%] top-[12%] bottom-[20%] rounded-full bg-[radial-gradient(ellipse_at_50%_40%,rgba(121,69,255,0.55),rgba(21,22,65,0.4)_55%,transparent_75%)] blur-2xl"
+            />
+            <div className="relative aspect-[3/4] [mask-image:linear-gradient(to_bottom,black_62%,transparent_97%)]">
               <Image
-                src="/photos/portrait-hero.jpg"
-                alt="Karis Ruth Jumawan holding a competition trophy and certificate"
+                src="/photos/portrait-headshot.webp"
+                alt="Portrait of Karis Ruth Jumawan"
                 fill
                 priority
-                sizes="420px"
-                className="object-cover object-[50%_35%]"
+                sizes="(min-width: 640px) 520px, 100vw"
+                className="object-contain object-bottom [filter:drop-shadow(0_0_40px_rgba(121,69,255,0.35))]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-night/60 via-transparent to-ink/40" />
             </div>
           </div>
 
-          <div className="relative -mt-16 flex flex-col items-center pb-20 text-center">
+          <div className="relative -mt-24 flex flex-col items-center pb-20 text-center">
             <p className="max-w-xl text-lg leading-relaxed text-snow/85 md:text-xl">
               Computer engineer building backend, cloud, and hardware systems
               that hold up, and writing up how each one works.

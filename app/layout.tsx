@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Audiowide, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk, Unbounded } from "next/font/google";
 import "./globals.css";
 import { DocumentViewerProvider } from "@/components/ui/document-viewer";
 import CursorGlow from "@/components/ui/cursor-glow";
@@ -15,9 +15,14 @@ const sans = Space_Grotesk({
   variable: "--font-sans",
   display: "swap",
 });
-const display = Audiowide({
+// Display face for the wordmark and hero name. The intended font is Riosark
+// (Nazmulsdesign, commercial). Unbounded is the closest free match. With a
+// licensed file, drop it in app/fonts/ and swap this for:
+//   import localFont from "next/font/local";
+//   const display = localFont({ src: "./fonts/Riosark.woff2", variable: "--font-display", display: "swap" });
+const display = Unbounded({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
   variable: "--font-display",
   display: "swap",
 });

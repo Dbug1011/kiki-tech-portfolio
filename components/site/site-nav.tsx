@@ -13,7 +13,7 @@ const SiteNav = () => {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
         <Link
           href="/"
-          className="focus-ring rounded font-display text-sm uppercase tracking-[0.35em] text-snow"
+          className="focus-ring rounded font-display text-base lowercase tracking-[0.12em] text-snow"
         >
           Kiki
         </Link>
