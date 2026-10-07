@@ -15,9 +15,11 @@ import {
   SiRaspberrypi,
   SiReact,
 } from "react-icons/si";
+import CapabilityLyrics from "@/components/site/capability-lyrics";
 import CaseStudyGrid from "@/components/site/case-study-grid";
 import ResumeButton from "@/components/site/resume-button";
 import { SectionHeading } from "@/components/site/section-heading";
+import TechStack from "@/components/site/tech-stack";
 import { caseStudies, categories, type Category } from "@/lib/case-studies";
 import { credentials, education, experience, profile } from "@/lib/resume-data";
 import { site } from "@/lib/site";
@@ -113,9 +115,9 @@ export default function Home() {
               aria-hidden="true"
               className="absolute inset-x-[12%] top-[12%] bottom-[20%] rounded-full bg-[radial-gradient(ellipse_at_50%_40%,rgba(121,69,255,0.55),rgba(21,22,65,0.4)_55%,transparent_75%)] blur-2xl"
             />
-            <div className="relative aspect-[3/4] [mask-image:linear-gradient(to_bottom,black_62%,transparent_97%)]">
+            <div className="feather-portrait relative aspect-[3/4]">
               <Image
-                src="/photos/portrait-headshot-hd.webp"
+                src="/photos/portrait-headshot-soft.webp"
                 alt="Portrait of Karis Ruth Jumawan"
                 fill
                 priority
@@ -163,46 +165,27 @@ export default function Home() {
 
       {/* ------------------------------------------------- Capabilities */}
       <section aria-labelledby="cap-h" id="capabilities" className="scroll-mt-20">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-24 sm:px-8 lg:grid-cols-[1fr_1.25fr]">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionHeading id="cap-h" eyebrow="Capabilities" lines={["Systems across", "the whole stack"]}>
-              From the gRPC call to the servo motor. Every area below links to
-              builds with the architecture drawn out.
-            </SectionHeading>
-            <Link href="#work" className="btn-primary mt-8">
-              See the case studies <MdArrowForward aria-hidden="true" />
-            </Link>
-          </div>
-
-          <ul className="space-y-4">
-            {categories
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
+          <CapabilityLyrics
+            heading={
+              <SectionHeading id="cap-h" eyebrow="Capabilities" lines={["Systems across", "the whole stack"]}>
+                From the gRPC call to the servo motor. Every area below links to
+                builds with the architecture drawn out.
+              </SectionHeading>
+            }
+            items={categories
               .filter((c): c is { key: Category; label: string } => c.key !== "all")
-              .map((c, i) => {
+              .map((c) => {
                 const studies = caseStudies.filter((s) => s.category === c.key);
-                const stack = Array.from(new Set(studies.flatMap((s) => s.stack))).slice(0, 6);
-                return (
-                  <li key={c.key} className="surface rounded-xl p-6 md:p-7">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="text-xl font-normal text-snow">
-                        <span className="mr-3 text-sm font-light text-lilac/70">{String(i + 1).padStart(2, "0")}</span>
-                        {c.label}
-                      </h3>
-                      <span className="micro shrink-0 text-mist/70">
-                        {studies.length} {studies.length === 1 ? "build" : "builds"}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-mist">{capabilityCopy[c.key]}</p>
-                    <ul className="mt-5 flex flex-wrap gap-1.5">
-                      {stack.map((t) => (
-                        <li key={t} className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] text-snow/70">
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
+                return {
+                  key: c.key,
+                  label: c.label,
+                  copy: capabilityCopy[c.key],
+                  count: studies.length,
+                  stack: Array.from(new Set(studies.flatMap((s) => s.stack))).slice(0, 6),
+                };
               })}
-          </ul>
+          />
         </div>
       </section>
 
@@ -275,6 +258,9 @@ export default function Home() {
           <CaseStudyGrid />
         </div>
       </section>
+
+      {/* ---------------------------------------------------- Tech stack */}
+      <TechStack />
 
       {/* -------------------------------------------------------- About */}
       <section aria-labelledby="about-h" id="about" className="relative scroll-mt-20 overflow-hidden">

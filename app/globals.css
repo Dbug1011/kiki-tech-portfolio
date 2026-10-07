@@ -103,6 +103,15 @@
   }
 }
 
+/* Feathered crop for the hero portrait: one elliptical fade, centred on
+   the face, so the head stays solid while both shoulders and the bottom
+   dissolve into the background instead of ending on a straight cut.
+   (A single layer avoids mask-composite quirks across browsers.) */
+.feather-portrait {
+  -webkit-mask-image: radial-gradient(ellipse 70% 72% at 50% 30%, black 52%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 72% at 50% 30%, black 52%, transparent 100%);
+}
+
 /* Sparse star field behind the hero. */
 .starfield {
   background-image:
